@@ -1,0 +1,104 @@
+@extends('admin.layout.base')
+@section('body')
+    <section class="content">
+        <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Holiday Homework</h3>
+              <div class="panel-group">
+                <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h4 class="panel-title text-right">
+                      <a data-toggle="collapse" href="#homework_form">Upload File</a>
+                    </h4>
+                  </div>
+                  <div id="homework_form" class="panel-collapse collapse {{ (@$holidayhomework || $errors->first())?'in':'' }}">
+                    <div class="panel-body ">
+                   {{ Form::open(['route'=>(@$holidayhomework)?['admin.holidayhomework.update']:'admin.holidayhomework.post','files'=>true]) }} 
+                          <div class="row">{{--row start --}}
+                              <div class="col-md-12 ">                                    
+                                 <div class="col-lg-6">                         
+                                    <div class="form-group">
+                                        {{ Form::label('title','Title',['class'=>'control-label']) }}
+                                         {{ Form::text('title',@$holidayhomework->title,['class'=>'form-control' ,'required']) }}
+                                         <p class="text-danger">{{ $errors->first('title') }}
+                                         </p>                           
+                                      </div>
+                                  </div>
+                                  <div class="col-lg-6">                         
+                                    <div class="form-group">
+                                        {{ Form::label('holidayhomework','Upload file .pdf & .docx',['class'=>'control-label']) }}
+                                         {{ Form::file('holidayhomework',@$holidayhomework->holidayhomework,['class'=>'form-control','required']) }}
+                                         <p class="text-danger">{{ $errors->first('holidayhomework') }}
+                                         </p>                           
+                                      </div>
+                                  </div>
+                              </div>
+                            </div> 
+                          <hr> 
+                        <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button class="btn btn-success">{{ (@$holidayhomework)?'Update':'Upload' }}</button>
+                        </div>
+                    </div>                            
+                    {{ Form::close() }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <table id="dataTable" class="table table-bordered table-striped table-hover">
+                <thead>
+                <tr>           
+                  <th>Id</th>
+                  <th>Date</th>
+                   
+                  <th>Title</th>
+                  <th width="80px">Action</th>                  
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($holidayhomeworks as $holidayhomework)
+                <tr>
+                  <td>{{ $holidayhomework->id }}</td>
+                  <td>{{ $holidayhomework->created_at }}</td>                  
+                  <td>{{ $holidayhomework->title }}</td> 
+                  <td align="center">
+                    {{-- <a class="btn btn-info btn-xs" href="{{ route('admin.holidayhomework.edit',$holidayhomework->id) }}"><i class="fa fa-pencil"></i></a> --}}
+                    <a class="btn btn-danger btn-xs" onclick="return confirm('Are you sure to delete this data ?')" href="{{ route('admin.holidayhomework.delete',$holidayhomework->id) }}"><i class="fa fa-trash"></i></a>
+                  </td>
+                 
+                </tr>
+                @endforeach
+                </tbody>
+                 
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+          <!-- Trigger the modal with a button -->
+    </section>
+    <!-- /.content -->
+@endsection
+@push('links')
+<style type="text/css">
+  .feeTable tbody td{
+    padding:10px;
+    margin:10px;
+  }
+</style>
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+@endpush
+ @push('scripts')
+ <script type="text/javascript" src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+
+ @if(Session::has('message'))
+<script type="text/javascript">
+    Command: toastr["{{ Session::get('class') }}"]("{{ Session::get('message') }}");
+</script>
+@endif
+
+@endpush
+
