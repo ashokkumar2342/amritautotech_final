@@ -39,7 +39,7 @@ tech.aae@gmail.com, amit@amritautotech.com</b></li>
                 <div class="row">
                     <div class="col-md-5">
                         <div class="main-logo">
-                            <a href="{{ route('front.home') }}"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="">
+                            <a href="{{ route('front.home') }}"><img src="{{ asset('assets/images/logo/logo_1.png') }}" alt="">
                             </a>
                         </div>
                     </div>
