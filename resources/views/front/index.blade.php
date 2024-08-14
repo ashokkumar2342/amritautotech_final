@@ -48,7 +48,7 @@
                           <div class="wow fadeIn" data-wow-duration="2s" data-wow-delay="0.5s" data-wow-offset="0" style="visibility: visible; animation-duration: 2s; animation-delay: 0.5s; animation-name: fadeIn;">
                               <div id="post-content">
                                   <div class="sec-title">
-                                      <h2>About Our Company</h2>
+                                      <h2>About Us</h2>
                                   </div>
                                   <div class="text">
                                       <p>Amrit Autotech Engineers  is a pioneering Automation company in Gurugram Haryana, India. Established with a vision to revolutionize industrial Amrit Autotech specializes in Heavy Machine Industrial Automation solutions. With a commitment to excellence and innovation, we cater to a diverse range of industries. </p>
